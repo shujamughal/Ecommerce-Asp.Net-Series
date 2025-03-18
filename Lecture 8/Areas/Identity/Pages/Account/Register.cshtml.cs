@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Project_Based_Learning.Models;
 
 namespace Project_Based_Learning.Areas.Identity.Pages.Account
 {
@@ -87,6 +88,7 @@ namespace Project_Based_Learning.Areas.Identity.Pages.Account
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
+            [StrongPassword]
             public string Password { get; set; }
 
             /// <summary>

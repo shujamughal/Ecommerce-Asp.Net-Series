@@ -7,9 +7,10 @@ namespace Project_Based_Learning.Models
     {
         public int Id { get; set; }  // Primary Key
 
-        [UniqueProductName]
+        
         [Required(ErrorMessage = "Product Name is required")]
         [StringLength(100, ErrorMessage = "Product Name must be between 2 and 100 characters", MinimumLength = 2)]
+        [UniqueProductName]
         public string Name { get; set; }  // Product Name
 
         [Required(ErrorMessage = "Description is required")]
@@ -21,7 +22,6 @@ namespace Project_Based_Learning.Models
         public decimal Price { get; set; }  // Product Price
 
         [Required(ErrorMessage = "Image URL is required")]
-        [Url(ErrorMessage = "Invalid image URL format")]
         public string ImageUrl { get; set; }  // Image Path
 
         // Foreign Key for Category
@@ -30,20 +30,5 @@ namespace Project_Based_Learning.Models
         public Category Category { get; set; }  // Navigation Property
     }
 
-    public class UniqueProductNameAttribute : ValidationAttribute
-    {
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            var _context = (ApplicationDbContext)validationContext.GetService(typeof(ApplicationDbContext));
-            var existingProduct = _context.Products.Any(p => p.Name == value.ToString());
-
-            if (existingProduct)
-            {
-                return new ValidationResult("Product name already exists. Choose a different name.");
-            }
-
-            return ValidationResult.Success;
-        }
-    }
 
 }
