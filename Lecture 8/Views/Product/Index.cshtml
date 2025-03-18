@@ -1,0 +1,116 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Product List</h2>
+    <p>
+        <a href="@Url.Action("Create", "Product")" class="btn btn-primary">Create New</a>
+    </p>
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text text-primary fw-bold">$@product.Price</p>
+                        <p class="text-muted">Category: @product.Category.Name</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-sm btn-outline-warning me-1 details-btn" data-bs-toggle="modal" data-bs-target="#detailsModal"
+                                data-name="@product.Name" data-description="@product.Description" data-price="$@product.Price"
+                                data-category="@product.Category.Name" data-image="@product.ImageUrl">
+                            <i class="bi bi-eye"></i> Details
+                        </button>
+                        <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-pencil-square"></i> Edit
+                        </a>
+                        @* <button class="btn btn-sm btn-outline-danger delete-btn" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="@product.Id">
+                            <i class="bi bi-trash"></i> Delete
+                        </button> *@
+                        <form asp-action="Delete" asp-route-id="@product.Id" method="post" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-trash"></i> Delete
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this product?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <a id="confirmDelete" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Product Details Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailsModalLabel">Product Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="detailsImage" class="img-fluid mb-3" style="max-height: 200px; object-fit: cover;">
+                <h5 id="detailsName"></h5>
+                <p id="detailsDescription"></p>
+                <p class="text-primary fw-bold" id="detailsPrice"></p>
+                <p class="text-muted" id="detailsCategory"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const deleteButtons = document.querySelectorAll(".delete-btn");
+        const confirmDeleteLink = document.getElementById("confirmDelete");
+
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const productId = this.getAttribute("data-id");
+                confirmDeleteLink.href = `/Products/Delete/${productId}`;
+            });
+        });
+
+        const detailsButtons = document.querySelectorAll(".details-btn");
+        const detailsModal = new bootstrap.Modal(document.getElementById("detailsModal"));
+
+        detailsButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                document.getElementById("detailsImage").src = this.getAttribute("data-image");
+                document.getElementById("detailsName").textContent = this.getAttribute("data-name");
+                document.getElementById("detailsDescription").textContent = this.getAttribute("data-description");
+                document.getElementById("detailsPrice").textContent = this.getAttribute("data-price");
+                document.getElementById("detailsCategory").textContent = "Category: " + this.getAttribute("data-category");
+                detailsModal.show();
+            });
+        });
+    });
+</script>
