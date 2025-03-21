@@ -224,12 +224,14 @@ namespace Project_Based_Learning.Controllers
         {
             if (picture == null)
             {
+                _logger.LogWarning("Image file is missing.");
                 ModelState.AddModelError("ImageFile", "Please select an image.");
                 return false;
             }
 
             if (picture.Length > 1 * 1024 * 1024) // 1MB limit
             {
+                _logger.LogWarning("Image file size exceeded limit.");
                 ModelState.AddModelError("ImageFile", "File size must be less than 1MB.");
                 return false;
             }
@@ -239,6 +241,7 @@ namespace Project_Based_Learning.Controllers
 
             if (!allowedExtensions.Contains(extension))
             {
+                _logger.LogWarning("Invalid image file extension.");
                 ModelState.AddModelError("ImageFile", "Only .jpg, .jpeg, .png, .gif, .webp files are allowed.");
                 return false;
             }

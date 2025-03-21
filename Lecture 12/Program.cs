@@ -2,9 +2,20 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Project_Based_Learning.Data;
 using Project_Based_Learning.Repositories;
+using Serilog;
 using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()  // Logs to Console
+    .WriteTo.File("Logs/app_log.txt", rollingInterval: RollingInterval.Day) // Logs to file
+    .CreateLogger();
+
+// Add Serilog to the logging system
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
