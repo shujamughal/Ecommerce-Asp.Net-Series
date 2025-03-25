@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/images/welcome-bg.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .category-card {
+            transition: transform 0.3s ease-in-out;
+        }
+
+            .category-card:hover {
+                transform: scale(1.05);
+            }
+
+        .btn-shop {
+            background-color: #ff6600;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+        }
+
+            .btn-shop:hover {
+                background-color: #cc5500;
+            }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1 class="display-4 fw-bold">Welcome to ShopEase</h1>
+        <p class="lead">Your one-stop shop for the latest and greatest products.</p>
+        <a href="@Url.Action("ProductsShopping", "Product")" class="btn btn-shop text-white">Start Shopping</a>
+    </div>
+
+    <!-- Featured Categories -->
+    <div class="container my-5">
+        <h2 class="text-center fw-bold mb-4">Explore Our Categories</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card category-card shadow">
+                    <img src="~/Uploads/7a1a57b4-8a96-4cb7-9fc4-9ec77901cb8a_download (1).jpeg" class="card-img-top" alt="Electronics">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Electronics</h5>
+                        <a href="/Shop?category=electronics" class="btn btn-primary">Browse</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card category-card shadow">
+                    <img src="~/Uploads/7f3450a3-21aa-4c30-9cf9-43bcc3b37b68_download (2).jpeg" class="card-img-top" alt="Fashion">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Fashion</h5>
+                        <a href="/Shop?category=fashion" class="btn btn-primary">Browse</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card category-card shadow">
+                    <img src="~/Uploads/2e419768-c851-4d66-9207-af8eb518d47d_download.jpg" class="card-img-top" alt="Home & Living">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Home & Living</h5>
+                        <a href="/Shop?category=home" class="btn btn-primary">Browse</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center my-5">
+        <h3>Get the best deals on top brands!</h3>
+        <p>Sign up now and receive exclusive discounts.</p>
+        <a href="/Register" class="btn btn-success">Join Now</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
