@@ -87,30 +87,6 @@ Build a **real-life web application** (e.g., Blog Platform, E-Commerce Site, Tas
 - Protecting against **XSS, SQL Injection, CSRF**
 - Enforcing **HTTPS & secure authentication**
 
-### **1️⃣6️⃣ Middleware & Custom Filters**
-- Understanding **Middleware Pipeline**
-- Creating **custom filters** (Authorization, Exception Handling, Caching)
-
----
-
-## **📌 Phase 5: Testing & Deployment**
-
-### **1️⃣7️⃣ Testing Strategies**
-- **Unit testing controllers & services** (xUnit, Moq)
-- **Integration testing** with TestServer
-
-### **1️⃣8️⃣ Deployment Preparation**
-- Configuring **environment variables** (Development vs. Production)
-- **Database optimization** for production
-
-### **1️⃣9️⃣ Cloud Deployment & CI/CD**
-- **Deploying to Azure, AWS, or Digital Ocean**
-- **Setting up CI/CD pipelines** with GitHub Actions/Azure DevOps
-
-### **2️⃣0️⃣ Post-Deployment Best Practices**
-- **Monitoring & logging application health**
-- **Backup strategies & performance scaling**
-
 ---
 
 ## **📌 Bonus Modules**
