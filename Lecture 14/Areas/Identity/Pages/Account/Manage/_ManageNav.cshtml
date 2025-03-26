@@ -1,0 +1,46 @@
+﻿@inject SignInManager<IdentityUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+<ul class="nav flex-column gap-2">
+    <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-2 @ManageNavPages.IndexNavClass(ViewContext) text-success"
+           id="profile" asp-page="./Index">
+            <i class="fas fa-user-circle fs-5 text-primary"></i> Profile
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-2 @ManageNavPages.EmailNavClass(ViewContext) text-success"
+           id="email" asp-page="./Email">
+            <i class="fas fa-envelope fs-5 text-success"></i> Email
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-2 @ManageNavPages.ChangePasswordNavClass(ViewContext) text-success"
+           id="change-password" asp-page="./ChangePassword">
+            <i class="fas fa-key fs-5 text-danger"></i> Password
+        </a>
+    </li>
+    @if (hasExternalLogins)
+    {
+        <li class="nav-item">
+            <a class="nav-link d-flex align-items-center gap-2 @ManageNavPages.ExternalLoginsNavClass(ViewContext) text-success"
+               id="external-login" asp-page="./ExternalLogins">
+                <i class="fas fa-sign-in-alt fs-5 text-warning"></i> External Logins
+            </a>
+        </li>
+    }
+    <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-2 @ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) text-success"
+           id="two-factor" asp-page="./TwoFactorAuthentication">
+            <i class="fas fa-shield-alt fs-5 text-info"></i> Two-Factor Authentication
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link d-flex align-items-center gap-2 @ManageNavPages.PersonalDataNavClass(ViewContext) text-success"
+           id="personal-data" asp-page="./PersonalData">
+            <i class="fas fa-id-card fs-5 text-secondary"></i> Personal Data
+        </a>
+    </li>
+</ul>
