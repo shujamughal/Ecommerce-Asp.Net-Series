@@ -1,4 +1,4 @@
-namespace Lecture2_Setting_Up_the_E_Commerce_Application.Models
+namespace Project_Based_Learning.Models
 {
     public class ErrorViewModel
     {

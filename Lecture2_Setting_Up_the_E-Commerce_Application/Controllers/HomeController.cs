@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using Lecture2_Setting_Up_the_E_Commerce_Application.Models;
 using Microsoft.AspNetCore.Mvc;
+using Project_Based_Learning.Models;
 
-namespace Lecture2_Setting_Up_the_E_Commerce_Application.Controllers
+namespace Project_Based_Learning.Controllers
 {
     public class HomeController : Controller
     {

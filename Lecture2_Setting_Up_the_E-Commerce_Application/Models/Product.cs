@@ -1,4 +1,4 @@
-﻿namespace Lecture2_Setting_Up_the_E_Commerce_Application.Models
+﻿namespace Project_Based_Learning.Models
 {
     public class Product
     {
@@ -8,5 +8,4 @@
         public decimal Price { get; set; }  // Product price
         public string ImageUrl { get; set; }  // URL for product image
     }
-
 }
