@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\Project-Based_ASP.NET_Core_MVC.props" />
-</Project>

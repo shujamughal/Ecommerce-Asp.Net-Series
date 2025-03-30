@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Project_Based_ASP.NET_Core_MVC.Models;
+using Project_Based_Learning.Models;
 
-namespace Project_Based_ASP.NET_Core_MVC.Controllers
+namespace Project_Based_Learning.Controllers
 {
     public class HomeController : Controller
     {
@@ -18,21 +18,10 @@ namespace Project_Based_ASP.NET_Core_MVC.Controllers
             return View();
         }
 
-        public IActionResult About()
-        {
-            return View(); // Returns Views/Home/About.cshtml
-        }
-
-        public IActionResult Contact()
-        {
-            return View(); // Returns Views/Home/Contact.cshtml
-        }
-
         public IActionResult Privacy()
         {
             return View();
         }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

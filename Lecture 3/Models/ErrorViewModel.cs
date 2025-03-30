@@ -1,4 +1,4 @@
-namespace Project_Based_ASP.NET_Core_MVC.Models
+namespace Project_Based_Learning.Models
 {
     public class ErrorViewModel
     {
